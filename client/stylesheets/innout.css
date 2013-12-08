@@ -16,29 +16,38 @@ div#page-innout .common {
 }
 
 div#page-innout div#topText {
-	width: 412px;
+	width: 450px;
 	left: 10px;
 	top: 40px;
-	padding: 12px;
+	padding: 20px 12px;
 	font-size: 1.7rem;
 	color: #000000;
+	text-align: center;
 }
 
 div#page-innout a {
 	color: #000000;
+	font-size: 3rem;
 }
 
 div#page-innout a:hover {
 	color: #000000;
+	text-decoration: none;
 }
 
 div#page-innout div#bottomText {
-	width: 412px;
-	padding: 12px;
+	width: 450px;
+	padding: 20px 12px;
 	font-size: 1.7rem;
 	color: #000000;
 	position: absolute;
 	right: 10px;
 	bottom:40px;
+	text-align: center;
 }
 
+span.innoutText {
+	color: #fff;
+	text-shadow:2px 2px 4px #000000;
+	font-weight: bold;
+}
