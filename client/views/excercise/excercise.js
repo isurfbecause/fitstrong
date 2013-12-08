@@ -1,34 +1,27 @@
+if (Meteor.isClient) {
+    Meteor.call("getExcerciseData", function(error, results) {
+        //console.log(results.content); //results.data should be a JSON object
+    });
+}
+
 $(document).ready(function() {
 	//alert("Lets Excercise")
-	Program.start(7, true);
-	window.paused = false;
-	$("a#btnPause").bind("click", function(e, target) {
-		if(window.paused) {
-			window.paused = false;
-			Program.unpause();
-		}
-		else {
-			window.paused = true;
-			Program.pause();
-		}
-	});
+  isExcercisePage = $("div#page-excercise").length > 0;
+  if(isExcercisePage) {
+  	Program.start(7, true);
+  	window.paused = false;
+  	$("a#btnPause").bind("click", function(e, target) {
+  		if(window.paused) {
+  			window.paused = false;
+  			Program.unpause();
+  		}
+  		else {
+  			window.paused = true;
+  			Program.pause();
+  		}
+  	});
+  }
 })
-
-window.INDOOR_EXCERCISES = [
-	{ id: "0", name:"INDOOR 1" },
-	{ id: "1", name:"INDOOR 2" },
-	{ id: "2", name:"INDOOR 3" },
-	{ id: "3", name:"INDOOR 4" },
-	{ id: "4", name:"INDOOR 5" }
-]
-
-window.OUTDOOR_EXCERCISES = [
-	{ id: "0", name:"OUTDOOR 1" },
-	{ id: "1", name:"OUTDOOR 2" },
-	{ id: "2", name:"OUTDOOR 3" },
-	{ id: "3", name:"OUTDOOR 4" },
-	{ id: "4", name:"OUTDOOR 5" }
-]
 
 var Program = (function(){
 	var _minutes;
@@ -76,6 +69,7 @@ var Program = (function(){
   	var num = Math.floor((Math.random()*num_excercises)+1);
   	var excercise = this._excercises[num - 1];
   	this._current_excercise = Excercise.init(this._exc_duration_seconds, excercise, _continue);
+    //_whistle()
   }
 
   var _pause = function() {
@@ -84,6 +78,11 @@ var Program = (function(){
 
   var _unpause = function() {
   	this._current_excercise.unpause();
+  }
+
+  var _whistle = function() {
+    var snd = new Audio("whistle.mp3"); // buffers automatically when created
+    snd.play();
   }
 
   return {
@@ -112,7 +111,7 @@ var Excercise = (function() {
   }
 
   var _tick = function() {
-  	console.log("tick " + this._seconds);
+  	//console.log("tick " + this._seconds);
   	if (this._seconds > 0) {
   		var countdown = $("div#countdown");
   		this._seconds = this._seconds - 1;
