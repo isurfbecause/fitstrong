@@ -53,7 +53,7 @@ var Program = (function(){
   var _continue = function() {
   	this._cycles_run = this._cycles_run + 1;
     console.log("Ran " + this._cycles_run + " of " + this._cycles + " cycles.")
-  	if(this._cycles_run >=  this._cycles) { 
+  	if(this._cycles_run >=  this._cycles) {
   		//Time to stop
   		alert("Alert ur done WoW Good Job")
   	}
@@ -66,7 +66,7 @@ var Program = (function(){
 
   var _rest = function() {
   	var rest_duration = 3;
-  	var rest_excercise = {id: "9001", name: "REST"}
+  	var rest_excercise = {id: "9001", exercise: "REST"}
   	Excercise.init(rest_duration, rest_excercise, _getExcercise);
   }
 
@@ -111,7 +111,7 @@ var Excercise = (function() {
   var _start = function(seconds, excercise, onDone) {
 		this._seconds = seconds;
 		this._onDone = onDone;
-		$("div#title h1").text(excercise.name);
+		$("div#title h1").text(excercise.exercise);
 		this._timer_interval = window.setInterval(_tick, 1000);
 		return true;
   }
@@ -132,7 +132,7 @@ var Excercise = (function() {
   			console.log("ERROR: onDone not defined")
   		}
   	}
-  	
+
   }
 
   var _pause = function() {
