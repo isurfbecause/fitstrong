@@ -1,0 +1,38 @@
+div#page-excercise {
+	background:url('/pushups.jpg') no-repeat center top;
+	text-align: center;
+	padding-top: 4%;
+}
+
+div#page-excercise div#title {
+	background-color: rgba(0,0,0,0.7);
+	width: auto !important;
+	min-width: 320px;
+	max-width: 460px;
+	margin: 0px auto;
+	padding: 5px 3px;
+	margin-bottom: 13%;
+}
+
+div#page-excercise div#title h1 {
+	font-size: 34px !important;
+}
+
+div#page-excercise div#countdown {
+	font-family: 'verdana';
+	font-weight: bold;
+	color: #FFFFFF;
+	text-shadow: 2px 2px 4px #000000 !important;
+	-webkit-font-smoothing: antialiased !important;
+	font-size: 255px;
+	margin-bottom: 13%;
+}
+
+div#page-excercise div#actions {
+
+}
+
+div#page-excercise div#actions a {
+	font-size: 25px;
+	padding: 20px 35px;
+}
