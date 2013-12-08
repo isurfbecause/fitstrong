@@ -1,0 +1,23 @@
+.btn-yellow, .btn-yellow:hover {
+  background-color: #FFFF26;
+  background-image: none !important;
+  color: #fff !important;
+  text-shadow:2px 2px 4px #000000;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*.btn-blue {
+	background-color: $blue-color !important;
+	background-image: none !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-red {
+	background-color: $red-color !important;
+	background-image: none !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}*/
