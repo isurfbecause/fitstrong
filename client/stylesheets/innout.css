@@ -23,6 +23,14 @@ div#page-innout div#topText {
 	color: #000000;
 }
 
+div#page-innout a {
+	color: #000000;
+}
+
+div#page-innout a:hover {
+	color: #000000;
+}
+
 div#page-innout div#bottomText {
 	width: 412px;
 	padding: 12px;

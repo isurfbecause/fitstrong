@@ -6,9 +6,13 @@ if (Meteor.isClient) {
 
 $(document).ready(function() {
 	//alert("Lets Excercise")
+  //minutes = Session.get("minutes");
+  //alert(minutes);
   isExcercisePage = $("div#page-excercise").length > 0;
   if(isExcercisePage) {
-  	Program.start(1, true);
+    minutes = Session.get("minutes");
+    if(!minutes) { console.log("ERROR: Minutes not set"); minutes = 7;}
+  	Program.start(minutes, isIndoors());
   	window.paused = false;
   	$("a#btnPause").bind("click", function(e, target) {
   		if(window.paused) {
@@ -22,6 +26,12 @@ $(document).ready(function() {
   	});
   }
 })
+
+var isIndoors = function() {
+  var queryString = window.location.search.replace(/^[^\?]+\??/,'');
+  var params = parseQuery(queryString);
+  return (params && params.type == "inside");
+}
 
 var Program = (function(){
 	var _minutes;

@@ -1,5 +1,5 @@
 Meteor.methods({
-    checkTwitter: function (cb) {
+    getExcerciseData: function (cb) {
         //this.unblock();
         Meteor.http.call("GET", 
         	"https://service.livestrong.com/service/fitness/exercises/?fitnessId=3236",
