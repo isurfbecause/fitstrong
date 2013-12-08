@@ -1,0 +1,35 @@
+body *{
+    position:relative;
+}
+div#page-welcome {
+}
+
+div#page-innout div#container {
+	height: 100%
+}
+
+div#page-innout .common {
+	opacity: 0.7;
+	background-color: #FFFF26;
+	font-weight: bold;
+}
+
+div#page-innout div#topText {
+	width: 412px;
+	left: 10px;
+	top: 40px;
+	padding: 12px;
+	font-size: 1.7rem;
+	color: #000000;
+}
+
+div#page-innout div#bottomText {
+	width: 412px;
+	padding: 12px;
+	font-size: 1.7rem;
+	color: #000000;
+	position: absolute;
+	right: 10px;
+	bottom:40px;
+}
+
