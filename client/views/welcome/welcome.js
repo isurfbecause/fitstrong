@@ -6,7 +6,6 @@ jQuery(document).ready(function($) {
 			var minutes = $("#txtMinutes").val();
 			console.log("Start working out for " + minutes);
 			Session.set("minutes", minutes);
-			alert(Session.get("minutes"));
 			window.location = "/innout"
 			//return true;
 		});
