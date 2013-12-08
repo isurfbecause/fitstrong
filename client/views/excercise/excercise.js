@@ -1,15 +1,154 @@
-// $(document).ready(function() {
-// 	alert("Lets Excercise")
+$(document).ready(function() {
+	//alert("Lets Excercise")
+	Program.start(7, true);
+	window.paused = false;
+	$("a#btnPause").bind("click", function(e, target) {
+		if(window.paused) {
+			window.paused = false;
+			Program.unpause();
+		}
+		else {
+			window.paused = true;
+			Program.pause();
+		}
+	});
+})
 
-// })
+window.INDOOR_EXCERCISES = [
+	{ id: "0", name:"INDOOR 1" },
+	{ id: "1", name:"INDOOR 2" },
+	{ id: "2", name:"INDOOR 3" },
+	{ id: "3", name:"INDOOR 4" },
+	{ id: "4", name:"INDOOR 5" }
+]
 
-// var program = function(minutes) {
-// 	var indoor = [
-// 		{"0", ""}
-// 	]
+window.OUTDOOR_EXCERCISES = [
+	{ id: "0", name:"OUTDOOR 1" },
+	{ id: "1", name:"OUTDOOR 2" },
+	{ id: "2", name:"OUTDOOR 3" },
+	{ id: "3", name:"OUTDOOR 4" },
+	{ id: "4", name:"OUTDOOR 5" }
+]
 
-// 	function tick = function() {
+var Program = (function(){
+	var _minutes;
+	var _exc_duration_seconds;
+	var _excercises = [];
+	var _current_excercise = null;
+	var _cycles;
+	var _cycles_run;
+	var _interval = null;
+  //var _privateVariable = {};
+  var _start = function(minutes, isIndoor) {
+		this._minutes = minutes;
+		this._exc_duration_seconds = 5;
+		this._excercises = (isIndoor) ? INDOOR_EXCERCISES : OUTDOOR_EXCERCISES;
+		this._cycles = (this._minutes * 60) / this._exc_duration_seconds;
+		this._cycles_run = 0;
+		//var program_ref = this;
+		_getExcercise();
+		// this._interval = window.setInterval(function(){
+		// 	_getExcercise();
+		// }, (this._exc_duration_seconds * 1000)
+  }
 
-// 	};
+  var _continue = function() {
+  	this._cycles_run = _cycles_run + 1;
+  	if(this._cycles >=  this._cycles_run) { 
+  		//Time to stop
+  		alert("Alert ur done WoW Good Job")
+  	}
+  	else {
+  		_rest();
+  		//_getExcercise();
+  	}
 
-// };
+  }
+
+  var _rest = function() {
+  	var rest_duration = 3;
+  	var rest_excercise = {id: "9001", name: "REST"}
+  	Excercise.init(rest_duration, rest_excercise, _getExcercise);
+  }
+
+  var _getExcercise = function() {
+  	var num_excercises = this._excercises.length;
+  	var num = Math.floor((Math.random()*num_excercises)+1);
+  	var excercise = this._excercises[num - 1];
+  	this._current_excercise = Excercise.init(this._exc_duration_seconds, excercise, _continue);
+  }
+
+  var _pause = function() {
+  	this._current_excercise.pause();
+  }
+
+  var _unpause = function() {
+  	this._current_excercise.unpause();
+  }
+
+  return {
+    start: function(minutes, isIndoor) {
+      _start(minutes, isIndoor);
+    },
+    pause: function() {
+    	_pause();
+    },
+    unpause: function() {
+    	_unpause();
+    }
+  }
+})();
+
+var Excercise = (function() {
+	var _seconds;
+  var _privateVariable = {};
+  var _timer_interval = null;
+  var _start = function(seconds, excercise, onDone) {
+		this._seconds = seconds;
+		this._onDone = onDone;
+		$("div#title h1").text(excercise.name);
+		this._timer_interval = window.setInterval(_tick, 1000);
+		return true;
+  }
+
+  var _tick = function() {
+  	console.log("tick " + this._seconds);
+  	if (this._seconds > 0) {
+  		var countdown = $("div#countdown");
+  		this._seconds = this._seconds - 1;
+  		countdown.text(this._seconds)
+  	}
+  	else {
+  		clearInterval(this._timer_interval);
+  		if (this._onDone) {
+  			this._onDone();
+  		}
+  		else {
+  			console.log("ERROR: onDone not defined")
+  		}
+  	}
+  	
+  }
+
+  var _pause = function() {
+  	clearInterval(this._timer_interval)
+  }
+
+  var _unpause = function() {
+  	this._timer_interval = window.setInterval(_tick, 1000);
+  }
+
+  return {
+    init: function(seconds, excercise, onDone) {
+      _start(seconds, excercise, onDone);
+      return this;
+      //alert(seconds)
+    },
+    pause: function() {
+    	_pause();
+    },
+    unpause: function() {
+    	_unpause();
+    }
+  }
+})();
