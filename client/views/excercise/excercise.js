@@ -1,31 +1,35 @@
-if (Meteor.isClient) {
-    Meteor.call("getExcerciseData", function(error, results) {
-        //console.log(results.content); //results.data should be a JSON object
-    });
-}
+// if (Meteor.isClient) {
+//     Meteor.call("getExcerciseData", function(error, results) {
+//         //console.log(results.content); //results.data should be a JSON object
+//     });
+// }
 
-$(document).ready(function() {
-	//alert("Lets Excercise")
-  //minutes = Session.get("minutes");
-  //alert(minutes);
-  isExcercisePage = $("div#page-excercise").length > 0;
-  if(isExcercisePage) {
-    minutes = Session.get("minutes");
-    if(!minutes) { console.log("ERROR: Minutes not set"); minutes = 7;}
-  	Program.start(minutes, isIndoors());
-  	window.paused = false;
-  	$("a#btnPause").bind("click", function(e, target) {
-  		if(window.paused) {
-  			window.paused = false;
-  			Program.unpause();
-  		}
-  		else {
-  			window.paused = true;
-  			Program.pause();
-  		}
-  	});
+if (Meteor.isClient) {
+Template.excercise.rendered = function() {
+  if(!this._rendered) {
+    this._rendered = true;
+    var isExcercisePage = $("div#page-excercise").length > 0;
+    //alert("render " + isExcercisePage);
+    if(isExcercisePage) {
+      var minutes = window.getCookie("minutes");
+      if(!minutes) { console.log("ERROR: Minutes not set"); minutes = 7;}
+      console.log("Lets Workout for " + minutes + " minutes.");
+      Program.start(minutes, isIndoors());
+      window.paused = false;
+      $("a#btnPause").bind("click", function(e, target) {
+        if(window.paused) {
+          window.paused = false;
+          Program.unpause();
+        }
+        else {
+          window.paused = true;
+          Program.pause();
+        }
+      });
+    }
   }
-})
+}
+}
 
 var isIndoors = function() {
   var queryString = window.location.search.replace(/^[^\?]+\??/,'');
