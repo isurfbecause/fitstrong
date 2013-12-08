@@ -1,0 +1,21 @@
+Example:
+https://service.livestrong.com/service/fitness/exercises/?fitnessId=5336
+
+Indoor
+
+5336 - Squats
+5346 - Pushups
+3294 - Situps
+3027 - Jumping Jacks
+5338 - Lunges
+5209 - Walk
+
+
+Outdoor
+
+3027 - Jumping Jacks
+3236 - Run
+5026 - Jog
+5338 - Lunges
+5346 - Pushups
+5209 - Walk
