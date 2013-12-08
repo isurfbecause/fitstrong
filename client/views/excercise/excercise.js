@@ -113,9 +113,13 @@ var Excercise = (function() {
   var _privateVariable = {};
   var _timer_interval = null;
   var _start = function(seconds, excercise, onDone) {
-		this._seconds = seconds;
+  var cals = $.isNumeric( +excercise.cals_per_hour) ? ' ( ' + Math.round( excercise.cals_per_hour / 60)  + ' cals )' : '';
+
+    this._seconds = seconds;
 		this._onDone = onDone;
-		$("div#title h1").text(excercise.exercise);
+
+
+		$("div#title h1").text(excercise.exercise + cals);
 		this._timer_interval = window.setInterval(_tick, 1000);
 		return true;
   }
