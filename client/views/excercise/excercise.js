@@ -47,7 +47,7 @@ var Program = (function(){
 	var _interval = null;
   var _start = function(minutes, isIndoor) {
 		this._minutes = minutes;
-		this._exc_duration_seconds = 5;
+		this._exc_duration_seconds = 30;
 		this._excercises = (isIndoor) ? INDOOR_EXCERCISES : OUTDOOR_EXCERCISES;
 		this._cycles = (this._minutes * 60) / this._exc_duration_seconds;
 		this._cycles_run = 0;
@@ -69,7 +69,7 @@ var Program = (function(){
   }
 
   var _rest = function() {
-  	var rest_duration = 3;
+  	var rest_duration = 10;
   	var rest_excercise = {id: "9001", exercise: "REST"}
   	Excercise.init(rest_duration, rest_excercise, _getExcercise);
   }
