@@ -8,7 +8,7 @@ $(document).ready(function() {
 	//alert("Lets Excercise")
   isExcercisePage = $("div#page-excercise").length > 0;
   if(isExcercisePage) {
-  	Program.start(7, true);
+  	Program.start(1, true);
   	window.paused = false;
   	$("a#btnPause").bind("click", function(e, target) {
   		if(window.paused) {
@@ -31,23 +31,19 @@ var Program = (function(){
 	var _cycles;
 	var _cycles_run;
 	var _interval = null;
-  //var _privateVariable = {};
   var _start = function(minutes, isIndoor) {
 		this._minutes = minutes;
 		this._exc_duration_seconds = 5;
 		this._excercises = (isIndoor) ? INDOOR_EXCERCISES : OUTDOOR_EXCERCISES;
 		this._cycles = (this._minutes * 60) / this._exc_duration_seconds;
 		this._cycles_run = 0;
-		//var program_ref = this;
 		_getExcercise();
-		// this._interval = window.setInterval(function(){
-		// 	_getExcercise();
-		// }, (this._exc_duration_seconds * 1000)
   }
 
   var _continue = function() {
-  	this._cycles_run = _cycles_run + 1;
-  	if(this._cycles >=  this._cycles_run) { 
+  	this._cycles_run = this._cycles_run + 1;
+    console.log("Ran " + this._cycles_run + " of " + this._cycles + " cycles.")
+  	if(this._cycles_run >=  this._cycles) { 
   		//Time to stop
   		alert("Alert ur done WoW Good Job")
   	}
