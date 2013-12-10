@@ -1,9 +1,3 @@
-// if (Meteor.isClient) {
-//     Meteor.call("getExcerciseData", function(error, results) {
-//         //console.log(results.content); //results.data should be a JSON object
-//     });
-// }
-
 if (Meteor.isClient) {
 Template.excercise.rendered = function() {
   if(!this._rendered) {
@@ -13,7 +7,7 @@ Template.excercise.rendered = function() {
     if(isExcercisePage) {
       var minutes = window.getCookie("minutes");
       if(!minutes) { console.log("ERROR: Minutes not set"); minutes = 7;}
-      console.log("Lets Workout for " + minutes + " minutes.");
+      //console.log("Lets Workout for " + minutes + " minutes.");
       Program.start(minutes, isIndoors());
       window.paused = false;
       $("a#btnPause").bind("click", function(e, target) {
@@ -47,7 +41,7 @@ var Program = (function(){
 	var _interval = null;
   var _start = function(minutes, isIndoor) {
 		this._minutes = minutes;
-		this._exc_duration_seconds = 30;
+		this._exc_duration_seconds = 60;
 		this._excercises = (isIndoor) ? INDOOR_EXCERCISES : OUTDOOR_EXCERCISES;
 		this._cycles = (this._minutes * 60) / this._exc_duration_seconds;
 		this._cycles_run = 0;
@@ -56,7 +50,7 @@ var Program = (function(){
 
   var _continue = function() {
   	this._cycles_run = this._cycles_run + 1;
-    console.log("Ran " + this._cycles_run + " of " + this._cycles + " cycles.")
+    //console.log("Ran " + this._cycles_run + " of " + this._cycles + " cycles.")
   	if(this._cycles_run >=  this._cycles) {
   		//Time to stop
   		alert("Alert ur done WoW Good Job")
@@ -79,7 +73,7 @@ var Program = (function(){
   	var num = Math.floor((Math.random()*num_excercises)+1);
   	var excercise = this._excercises[num - 1];
   	this._current_excercise = Excercise.init(this._exc_duration_seconds, excercise, _continue);
-    //_whistle()
+    _whistle()
   }
 
   var _pause = function() {

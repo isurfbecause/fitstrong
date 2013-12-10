@@ -11,7 +11,7 @@ div#page-excercise div#title {
 	max-width: 500px;
 	margin: 0px auto;
 	padding: 5px 3px;
-	margin-bottom: 18%;
+	margin-bottom: 22vh;
 }
 
 div#page-excercise div#title h1 {
@@ -25,7 +25,7 @@ div#page-excercise div#countdown {
 	text-shadow: 2px 2px 4px #000000 !important;
 	-webkit-font-smoothing: antialiased !important;
 	font-size: 255px;
-	margin-bottom: 15%;
+	margin-bottom: 22vh;
 }
 
 div#page-excercise div#actions {
